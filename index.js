@@ -66,6 +66,46 @@ async function linkgen(longlink, path){
 
 app.get('/', (req, res) => {
   res.send(`
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Work+Sans&display=swap');
+  </style>
+  <style>
+
+    body, button, input, p, a, b, i, h1 {
+      font-family:'Work Sans'
+    }
+    input {
+      margin: 5px;
+      padding:5px;
+      border:#ffbf00 solid 2px;
+      border-radius:5px;
+      transition: border 0.3s ease, border-color 0.3s ease;
+    }
+    input :focus {
+      border:#cd9900 solid 2px;
+
+    }
+    input :hover {
+      border:black solid 2px;
+
+    }
+    button, input[type="submit"] {
+      background-color: #ffbf00;
+      border:none;
+      border-radius:5px;
+      padding:10px;
+    }
+    a {
+      color:#cd9900;
+      text-decoration: underline;
+    }
+    a:hover {
+      text-decoration:blink
+    }
+
+
+  </style>
+  <h1>Shorten Your Links With AmberURL</h1>
   <form action="/" method="post">
     <label for="longLink">Long Link:</label>
     <input type="text" id="longLink" name="longLink" required><br>
@@ -88,10 +128,89 @@ app.post('/', async (req, res) => {
   let data = await linkgen(link, path)
   if(data.success==false){
     if(data.dup==true){
-      res.send(`<h1>Link already exists</h1> 
+      res.send(`
+      <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Work+Sans&display=swap');
+  </style>
+  <style>
+    
+    body, button, input, p, a, b, i, h1 {
+      font-family:'Work Sans'
+    }
+    input {
+      margin: 5px;
+      padding:5px;
+      border:#ffbf00 solid 2px;
+      border-radius:5px;
+      transition: border 0.3s ease, border-color 0.3s ease;
+    }
+    input :focus {
+      border:#cd9900 solid 2px;
+      
+    }
+    input :hover {
+      border:black solid 2px;
+
+    }
+    button, input[type="submit"] {
+      background-color: #ffbf00;
+      border:none;
+      border-radius:5px;
+      padding:10px;
+    }
+    a {
+      color:#cd9900;
+      text-decoration: underline;
+    }
+    a:hover {
+      text-decoration:blink
+    }
+
+    
+  </style>
+  <h1>Link already exists</h1> 
       <a href='/'> <-- Back to home</a>`)
     } else {
-      res.send(`<h1>An error occured</h1> 
+      res.send(`<style>
+    @import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Work+Sans&display=swap');
+  </style>
+  <style>
+    
+    body, button, input, p, a, b, i, h1 {
+      font-family:'Work Sans'
+    }
+    input {
+      margin: 5px;
+      padding:5px;
+      border:#ffbf00 solid 2px;
+      border-radius:5px;
+      transition: border 0.3s ease, border-color 0.3s ease;
+    }
+    input :focus {
+      border:#cd9900 solid 2px;
+      
+    }
+    input :hover {
+      border:black solid 2px;
+
+    }
+    button, input[type="submit"] {
+      background-color: #ffbf00;
+      border:none;
+      border-radius:5px;
+      padding:10px;
+    }
+    a {
+      color:#cd9900;
+      text-decoration: underline;
+    }
+    a:hover {
+      text-decoration:blink
+    }
+
+    
+  </style>
+  <h1>An error occured</h1> 
       <p>ERROR: ${data.error}</p>
       <p>Please screenshot this page and sent it to devs to resolve issue</p>
       <a href='/'> <-- Back to home</a>`)
@@ -108,6 +227,45 @@ app.post('/', async (req, res) => {
     console.log(qr)
     console.log(data)
     res.send(`
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Work+Sans&display=swap');
+    </style>
+    <style>
+
+      body, button, input, p, a, b, i, h1 {
+        font-family:'Work Sans'
+      }
+      input {
+        margin: 5px;
+        padding:5px;
+        border:#ffbf00 solid 2px;
+        border-radius:5px;
+        transition: border 0.3s ease, border-color 0.3s ease;
+      }
+      input :focus {
+        border:#cd9900 solid 2px;
+
+      }
+      input :hover {
+        border:black solid 2px;
+
+      }
+      button, input[type="submit"] {
+        background-color: #ffbf00;
+        border:none;
+        border-radius:5px;
+        padding:10px;
+      }
+      a {
+        color:#cd9900;
+        text-decoration: underline;
+      }
+      a:hover {
+        text-decoration:blink
+      }
+
+
+    </style>
     <h1>Link Created</h1>
     <p>Short Link: <a href='${data.url}'>${data.url}</a></p>
     <p>${qr}</p>
