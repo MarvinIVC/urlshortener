@@ -159,6 +159,25 @@ app.get('/', (req, res) => {
       .success {
         color: #4dff4d;
       }
+      .footer {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: black;
+        }
+
+        .footer-text {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .footer-heart {
+            width: 20px;
+            height: 20px;
+        }
     </style>
   </head>
   <body>
@@ -173,6 +192,10 @@ app.get('/', (req, res) => {
         <input type="checkbox" id="qr" name="qr">
         <input type="submit" value="Create Short Link">
       </form>
+    </div>
+    <div class="footer">
+            <div class="footer-text">Made by Marvin with Much Love</div>
+            <img class="footer-heart" src="https://cdn.pixabay.com/photo/2017/06/24/20/27/heart-2438746_1280.png" alt="Heart">
     </div>
   </body>
   </html>
