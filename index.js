@@ -78,7 +78,11 @@ app.get('/', (req, res) => {
         height: 100vh;
         margin: 0;
         background-color: #e0f7fa;
+        background-image: url('default-background.jpg'); /* default background */
+        background-size: cover;
+        background-position: center;
         color: #333;
+        transition: background-image 1s ease-in-out;
       }
       h1 {
         font-size: 2.5em;
@@ -159,16 +163,24 @@ app.get('/', (req, res) => {
         color: #81c784;
       }
       #backgroundSelection {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+      #backgroundSelection.visible {
+        display: flex;
+        opacity: 1;
+      }
+      #backgroundSelection {
         position: absolute;
         bottom: 10px;
         left: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.5);
+        padding: 5px;
         border-radius: 5px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
       #backgroundSelection label {
         margin: 0 5px;
@@ -178,13 +190,9 @@ app.get('/', (req, res) => {
         width: 50px;
         height: 50px;
         border-radius: 5px;
-        border: 2px solid #009688;
-        transition: border-color 0.3s ease;
+        cursor: pointer;
       }
-      #backgroundSelection label img:hover {
-        border-color: #004d40;
-      }
-      .roundButton {
+      #toggleBackgrounds {
         position: fixed;
         bottom: 60px;
         left: 10px;
@@ -199,7 +207,7 @@ app.get('/', (req, res) => {
         transition: background-color 0.3s, transform 0.3s;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
-      .roundButton:hover {
+      #toggleBackgrounds:hover {
         background-color: #009acd;
         transform: scale(1.1);
       }
@@ -220,41 +228,53 @@ app.get('/', (req, res) => {
     </div>
     <div id="backgroundSelection">
       <label>
-        <input type="radio" name="background" value="1" checked>
+        <input type="radio" name="background" value="1" data-url="https://files.123freevectors.com/wp-content/original/131396-light-color-polygonal-abstract-background-vector-illustration.jpg">
         <img src="https://files.123freevectors.com/wp-content/original/131396-light-color-polygonal-abstract-background-vector-illustration.jpg" alt="Background 1">
       </label>
       <label>
-        <input type="radio" name="background" value="2">
+        <input type="radio" name="background" value="2" data-url="https://th.bing.com/th/id/R.435ebd9442f6ca449b44699a2a9a6acd?rik=fYMPzB%2ffp1EczA&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2f1%2fa%2f8%2f136021.jpg&ehk=MAPonR9qka0eiZRvyC%2b08vGWIdpkEibRMFYdtK6xt8c%3d&risl=&pid=ImgRaw&r=0">
         <img src="https://th.bing.com/th/id/R.435ebd9442f6ca449b44699a2a9a6acd?rik=fYMPzB%2ffp1EczA&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2f1%2fa%2f8%2f136021.jpg&ehk=MAPonR9qka0eiZRvyC%2b08vGWIdpkEibRMFYdtK6xt8c%3d&risl=&pid=ImgRaw&r=0" alt="Background 2">
       </label>
       <label>
-        <input type="radio" name="background" value="3">
+        <input type="radio" name="background" value="3" data-url="https://www.teahub.io/photos/full/44-440307_light-colors-geometric-pattern-abstract-wallpaper-abstract-wallpaper.jpg">
         <img src="https://www.teahub.io/photos/full/44-440307_light-colors-geometric-pattern-abstract-wallpaper-abstract-wallpaper.jpg" alt="Background 3">
       </label>
       <label>
-        <input type="radio" name="background" value="4">
+        <input type="radio" name="background" value="4" data-url="https://img.freepik.com/free-photo/soft-vintage-gradient-blur-background-with-pastel-colored-well-use-as-studio-room-product-presentation-banner_1258-71429.jpg">
         <img src="https://img.freepik.com/free-photo/soft-vintage-gradient-blur-background-with-pastel-colored-well-use-as-studio-room-product-presentation-banner_1258-71429.jpg" alt="Background 4">
       </label>
       <label>
-        <input type="radio" name="background" value="5">
+        <input type="radio" name="background" value="5" data-url="https://static.vecteezy.com/system/resources/thumbnails/008/058/793/small_2x/abstract-blur-with-bokeh-light-for-background-usage-vector.jpg">
         <img src="https://static.vecteezy.com/system/resources/thumbnails/008/058/793/small_2x/abstract-blur-with-bokeh-light-for-background-usage-vector.jpg" alt="Background 5">
       </label>
       <label>
-        <input type="radio" name="background" value="6">
+        <input type="radio" name="background" value="6" data-url="https://getwallpapers.com/wallpaper/full/e/c/e/455056.jpg">
         <img src="https://getwallpapers.com/wallpaper/full/e/c/e/455056.jpg" alt="Background 6">
       </label>
     </div>
     <button id="toggleBackgrounds" class="roundButton">☰</button>
     <script>
-      document.getElementById('toggleBackgrounds').addEventListener('click', function() {
-        const selection = document.getElementById('backgroundSelection');
-        selection.classList.toggle('visible');
+      document.getElementById('toggleBackgrounds').addEventListener('click', () => {
+        const backgroundSelection = document.getElementById('backgroundSelection');
+        if (backgroundSelection.classList.contains('visible')) {
+          backgroundSelection.classList.remove('visible');
+        } else {
+          backgroundSelection.classList.add('visible');
+        }
+      });
+
+      document.querySelectorAll('#backgroundSelection input[name="background"]').forEach(input => {
+        input.addEventListener('change', (event) => {
+          const backgroundUrl = event.target.getAttribute('data-url');
+          document.body.style.backgroundImage = `url(${backgroundUrl})`;
+        });
       });
     </script>
   </body>
   </html>
   `);
 });
+
 
 app.post('/', async (req, res) => {
   let link = req.body.longLink;
