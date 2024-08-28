@@ -77,7 +77,8 @@ app.get('/', (req, res) => {
         justify-content: center;
         height: 100vh;
         margin: 0;
-        background-color: #f5f5f5;
+        background: url('https://marketplace.canva.com/EAFCO6pfthY/1/0/1600w/canva-blue-green-watercolor-linktree-background-F2CyNS5sQdM.jpg') no-repeat center center fixed;
+        background-size: cover;
         color: #333;
       }
       h1 {
@@ -88,7 +89,7 @@ app.get('/', (req, res) => {
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
       }
       .container {
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.8); /* Adjusted opacity for better contrast */
         padding: 30px;
         border-radius: 10px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -144,7 +145,7 @@ app.get('/', (req, res) => {
         text-decoration: underline;
       }
       .response-container {
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.8); /* Adjusted opacity for better contrast */
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -177,6 +178,7 @@ app.get('/', (req, res) => {
   </html>
   `);
 });
+
 
 app.post('/', async (req, res) => {
   let link = req.body.longLink;
