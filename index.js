@@ -77,7 +77,7 @@ app.get('/', (req, res) => {
         justify-content: center;
         height: 100vh;
         margin: 0;
-        background-color: #f5f5f5;
+        background-color: #e0f7fa;
         color: #333;
       }
       h1 {
@@ -108,7 +108,7 @@ app.get('/', (req, res) => {
       input {
         margin: 5px 0 15px;
         padding: 10px;
-        border: 2px solid #007bff;
+        border: 2px solid #009688;
         border-radius: 5px;
         width: 100%;
         box-sizing: border-box;
@@ -116,11 +116,11 @@ app.get('/', (req, res) => {
         transition: border-color 0.3s ease;
       }
       input:focus {
-        border-color: #0056b3;
+        border-color: #004d40;
         outline: none;
       }
       button, input[type="submit"] {
-        background-color: #007bff;
+        background-color: #009688;
         border: none;
         border-radius: 5px;
         padding: 10px 20px;
@@ -131,10 +131,10 @@ app.get('/', (req, res) => {
         margin-top: 10px;
       }
       button:hover, input[type="submit"]:hover {
-        background-color: #0056b3;
+        background-color: #004d40;
       }
       a {
-        color: #007bff;
+        color: #00796b;
         text-decoration: none;
         font-weight: bold;
         margin-top: 10px;
@@ -153,10 +153,55 @@ app.get('/', (req, res) => {
         text-align: center;
       }
       .error {
-        color: #ff4d4d;
+        color: #e57373;
       }
       .success {
-        color: #4dff4d;
+        color: #81c784;
+      }
+      #backgroundSelection {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      #backgroundSelection label {
+        margin: 0 5px;
+        cursor: pointer;
+      }
+      #backgroundSelection label img {
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+        border: 2px solid #009688;
+        transition: border-color 0.3s ease;
+      }
+      #backgroundSelection label img:hover {
+        border-color: #004d40;
+      }
+      .roundButton {
+        position: fixed;
+        bottom: 60px;
+        left: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        background-color: #00bfff;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .roundButton:hover {
+        background-color: #009acd;
+        transform: scale(1.1);
       }
     </style>
   </head>
@@ -173,6 +218,39 @@ app.get('/', (req, res) => {
         <input type="submit" value="Create Short Link">
       </form>
     </div>
+    <div id="backgroundSelection">
+      <label>
+        <input type="radio" name="background" value="1" checked>
+        <img src="https://files.123freevectors.com/wp-content/original/131396-light-color-polygonal-abstract-background-vector-illustration.jpg" alt="Background 1">
+      </label>
+      <label>
+        <input type="radio" name="background" value="2">
+        <img src="https://th.bing.com/th/id/R.435ebd9442f6ca449b44699a2a9a6acd?rik=fYMPzB%2ffp1EczA&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2f1%2fa%2f8%2f136021.jpg&ehk=MAPonR9qka0eiZRvyC%2b08vGWIdpkEibRMFYdtK6xt8c%3d&risl=&pid=ImgRaw&r=0" alt="Background 2">
+      </label>
+      <label>
+        <input type="radio" name="background" value="3">
+        <img src="https://www.teahub.io/photos/full/44-440307_light-colors-geometric-pattern-abstract-wallpaper-abstract-wallpaper.jpg" alt="Background 3">
+      </label>
+      <label>
+        <input type="radio" name="background" value="4">
+        <img src="https://img.freepik.com/free-photo/soft-vintage-gradient-blur-background-with-pastel-colored-well-use-as-studio-room-product-presentation-banner_1258-71429.jpg" alt="Background 4">
+      </label>
+      <label>
+        <input type="radio" name="background" value="5">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/008/058/793/small_2x/abstract-blur-with-bokeh-light-for-background-usage-vector.jpg" alt="Background 5">
+      </label>
+      <label>
+        <input type="radio" name="background" value="6">
+        <img src="https://getwallpapers.com/wallpaper/full/e/c/e/455056.jpg" alt="Background 6">
+      </label>
+    </div>
+    <button id="toggleBackgrounds" class="roundButton">☰</button>
+    <script>
+      document.getElementById('toggleBackgrounds').addEventListener('click', function() {
+        const selection = document.getElementById('backgroundSelection');
+        selection.classList.toggle('visible');
+      });
+    </script>
   </body>
   </html>
   `);
@@ -202,7 +280,7 @@ app.post('/', async (req, res) => {
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #f5f5f5;
+            background-color: #e0f7fa;
             color: #333;
           }
           .response-container {
@@ -215,10 +293,10 @@ app.post('/', async (req, res) => {
             text-align: center;
           }
           h1 {
-            color: #ff4d4d;
+            color: #e57373;
           }
           a {
-            color: #007bff;
+            color: #00796b;
             text-decoration: none;
             font-weight: bold;
             display: inline-block;
@@ -251,7 +329,7 @@ app.post('/', async (req, res) => {
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #f5f5f5;
+            background-color: #e0f7fa;
             color: #333;
           }
           .response-container {
@@ -264,10 +342,10 @@ app.post('/', async (req, res) => {
             text-align: center;
           }
           p {
-            color: #ff4d4d;
+            color: #e57373;
           }
           a {
-            color: #007bff;
+            color: #00796b;
             text-decoration: none;
             font-weight: bold;
             display: inline-block;
@@ -307,7 +385,7 @@ app.post('/', async (req, res) => {
           justify-content: center;
           height: 100vh;
           margin: 0;
-          background-color: #f5f5f5;
+          background-color: #e0f7fa;
           color: #333;
         }
         .response-container {
@@ -320,13 +398,13 @@ app.post('/', async (req, res) => {
           text-align: center;
         }
         h1 {
-          color: #030000;
+          color: black;
           font-size: 2.5em;
           margin-bottom: 20px;
           text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
         }
         a {
-          color: #007bff;
+          color: #00796b;
           text-decoration: none;
           font-weight: bold;
           display: inline-block;
