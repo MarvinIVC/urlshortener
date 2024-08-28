@@ -67,21 +67,28 @@ app.get('/', (req, res) => {
   res.send(`
   <html>
   <head>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Work+Sans&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <style>
       body {
-        font-family: 'Work Sans', sans-serif;
-        background-color: #f0f0f0;
-        color: #333;
-        margin: 0;
-        padding: 0;
+        font-family: 'Roboto', sans-serif;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
-        min-height: 100vh;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f5f5f5;
+        color: #333;
+      }
+      h1 {
+        font-size: 2.5em;
+        color: black;
+        margin-bottom: 20px;
+        text-align: center;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
       }
       .container {
-        background: #ffffff;
+        background: rgba(255, 255, 255, 0.9);
         padding: 30px;
         border-radius: 10px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -89,17 +96,6 @@ app.get('/', (req, res) => {
         max-width: 500px;
         box-sizing: border-box;
         text-align: center;
-      }
-      h1 {
-        color: #ff6f61;
-        margin-bottom: 20px;
-        font-size: 24px;
-        text-shadow: 1px 1px 2px rgba(255, 105, 97, 0.7);
-      }
-      form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
       }
       label {
         font-weight: bold;
@@ -112,7 +108,7 @@ app.get('/', (req, res) => {
       input {
         margin: 5px 0 15px;
         padding: 10px;
-        border: 2px solid #ff6f61;
+        border: 2px solid #007bff;
         border-radius: 5px;
         width: 100%;
         box-sizing: border-box;
@@ -120,11 +116,11 @@ app.get('/', (req, res) => {
         transition: border-color 0.3s ease;
       }
       input:focus {
-        border-color: #ff3d2e;
+        border-color: #0056b3;
         outline: none;
       }
       button, input[type="submit"] {
-        background-color: #ff6f61;
+        background-color: #007bff;
         border: none;
         border-radius: 5px;
         padding: 10px 20px;
@@ -135,10 +131,10 @@ app.get('/', (req, res) => {
         margin-top: 10px;
       }
       button:hover, input[type="submit"]:hover {
-        background-color: #ff3d2e;
+        background-color: #0056b3;
       }
       a {
-        color: #ff6f61;
+        color: #007bff;
         text-decoration: none;
         font-weight: bold;
         margin-top: 10px;
@@ -148,7 +144,7 @@ app.get('/', (req, res) => {
         text-decoration: underline;
       }
       .response-container {
-        background: #ffffff;
+        background: rgba(255, 255, 255, 0.9);
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -196,21 +192,21 @@ app.post('/', async (req, res) => {
       res.send(`
       <html>
       <head>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Work+Sans&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
         <style>
           body {
-            font-family: 'Work Sans', sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            margin: 0;
-            padding: 0;
+            font-family: 'Roboto', sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            min-height: 100vh;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            color: #333;
           }
           .response-container {
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -219,10 +215,10 @@ app.post('/', async (req, res) => {
             text-align: center;
           }
           h1 {
-            color: #ff6f61;
+            color: #ff4d4d;
           }
           a {
-            color: #ff6f61;
+            color: #007bff;
             text-decoration: none;
             font-weight: bold;
             display: inline-block;
@@ -245,21 +241,21 @@ app.post('/', async (req, res) => {
       res.send(`
       <html>
       <head>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Work+Sans&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
         <style>
           body {
-            font-family: 'Work Sans', sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            margin: 0;
-            padding: 0;
+            font-family: 'Roboto', sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            min-height: 100vh;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            color: #333;
           }
           .response-container {
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -271,7 +267,7 @@ app.post('/', async (req, res) => {
             color: #ff4d4d;
           }
           a {
-            color: #ff6f61;
+            color: #007bff;
             text-decoration: none;
             font-weight: bold;
             display: inline-block;
@@ -284,8 +280,7 @@ app.post('/', async (req, res) => {
       </head>
       <body>
         <div class="response-container">
-          <h1 class="error">An error occurred</h1>
-          <p>ERROR: ${data.error}</p>
+          <h1 class="error">ERROR: ${data.error}</h1>
           <p>Please screenshot this page and send it to the devs to resolve the issue.</p>
           <a href="/"> <-- Back to home</a>
         </div>
@@ -302,21 +297,21 @@ app.post('/', async (req, res) => {
     res.send(`
     <html>
     <head>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Work+Sans&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
       <style>
         body {
-          font-family: 'Work Sans', sans-serif;
-          background-color: #f0f0f0;
-          color: #333;
-          margin: 0;
-          padding: 0;
+          font-family: 'Roboto', sans-serif;
           display: flex;
-          justify-content: center;
+          flex-direction: column;
           align-items: center;
-          min-height: 100vh;
+          justify-content: center;
+          height: 100vh;
+          margin: 0;
+          background-color: #f5f5f5;
+          color: #333;
         }
         .response-container {
-          background: #ffffff;
+          background: rgba(255, 255, 255, 0.9);
           padding: 20px;
           border-radius: 10px;
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -326,9 +321,12 @@ app.post('/', async (req, res) => {
         }
         h1 {
           color: #4dff4d;
+          font-size: 2.5em;
+          margin-bottom: 20px;
+          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
         }
         a {
-          color: #ff6f61;
+          color: #007bff;
           text-decoration: none;
           font-weight: bold;
           display: inline-block;
