@@ -2,15 +2,7 @@ const fetch = require('node-fetch');
 const bodyParser = require('body-parser');
 const QRCode = require('qrcode');
 const express = require('express');
-const path = require('path');
 const app = express();
-
-// Set up EJS
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-
-// Serve static files (like CSS)
-app.use('/styles', express.static(path.join(__dirname, 'styles')));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -72,7 +64,118 @@ const genqr = async text => {
 };
 
 app.get('/', (req, res) => {
-  res.render('index');
+  res.send(`
+  <html>
+  <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f5f5f5;
+        color: #333;
+      }
+      h1 {
+        font-size: 2.5em;
+        color: black;
+        margin-bottom: 20px;
+        text-align: center;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      }
+      .container {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+        box-sizing: border-box;
+        text-align: center;
+      }
+      label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #555;
+        font-size: 16px;
+        text-align: left;
+        width: 100%;
+      }
+      input {
+        margin: 5px 0 15px;
+        padding: 10px;
+        border: 2px solid #007bff;
+        border-radius: 5px;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+      }
+      input:focus {
+        border-color: #0056b3;
+        outline: none;
+      }
+      button, input[type="submit"] {
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 10px;
+      }
+      button:hover, input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+      a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 10px;
+        display: inline-block;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .response-container {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        margin: 20px auto;
+        text-align: center;
+      }
+      .error {
+        color: #ff4d4d;
+      }
+      .success {
+        color: #4dff4d;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Marvin's URL Shortening Service</h1>
+      <form action="/" method="post">
+        <label for="longLink">Long Link:</label>
+        <input type="text" id="longLink" name="longLink" required>
+        <label for="customBackHalf">Custom Back Half (optional):</label>
+        <input type="text" id="customBackHalf" name="customBackHalf">
+        <label for="qr">Generate QR Code:</label>
+        <input type="checkbox" id="qr" name="qr">
+        <input type="submit" value="Create Short Link">
+      </form>
+    </div>
+  </body>
+  </html>
+  `);
 });
 
 app.post('/', async (req, res) => {
@@ -86,9 +189,104 @@ app.post('/', async (req, res) => {
 
   if (data.success == false) {
     if (data.dup == true) {
-      res.render('error', { error: 'Link already exists' });
+      res.send(`
+      <html>
+      <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+        <style>
+          body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            color: #333;
+          }
+          .response-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 20px auto;
+            text-align: center;
+          }
+          h1 {
+            color: #ff4d4d;
+          }
+          a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+          }
+          a:hover {
+            text-decoration: underline;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="response-container">
+          <h1 class="error">Link already exists</h1>
+          <a href="/"> <-- Back to home</a>
+        </div>
+      </body>
+      </html>
+      `);
     } else {
-      res.render('error', { error: data.error });
+      res.send(`
+      <html>
+      <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+        <style>
+          body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            color: #333;
+          }
+          .response-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 20px auto;
+            text-align: center;
+          }
+          p {
+            color: #ff4d4d;
+          }
+          a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+          }
+          a:hover {
+            text-decoration: underline;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="response-container">
+          <h1 class="error">ERROR: ${data.error}</h1>
+          <p>Please screenshot this page and send it to the devs to resolve the issue.</p>
+          <a href="/"> <-- Back to home</a>
+        </div>
+      </body>
+      </html>
+      `);
     }
   } else {
     if (qr) {
@@ -96,7 +294,59 @@ app.post('/', async (req, res) => {
     } else {
       qr = '';
     }
-    res.render('success', { url: data.url, qr: qr });
+    res.send(`
+    <html>
+    <head>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+      <style>
+        body {
+          font-family: 'Roboto', sans-serif;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          margin: 0;
+          background-color: #f5f5f5;
+          color: #333;
+        }
+        .response-container {
+          background: rgba(255, 255, 255, 0.9);
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          max-width: 500px;
+          margin: 20px auto;
+          text-align: center;
+        }
+        h1 {
+          color: #030000;
+          font-size: 2.5em;
+          margin-bottom: 20px;
+          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        a {
+          color: #007bff;
+          text-decoration: none;
+          font-weight: bold;
+          display: inline-block;
+          margin-top: 10px;
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="response-container">
+        <h1>Link Created</h1>
+        <p>Short Link: <a href='${data.url}'>${data.url}</a></p>
+        ${qr}
+        <a href="/"> <-- Back to home</a>
+      </div>
+    </body>
+    </html>
+    `);
   }
 });
 
