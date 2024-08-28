@@ -197,7 +197,7 @@ app.get('/', (req, res) => {
             <div class="footer-text">Made by Marvin with Much Love</div>
             <img class="footer-heart" src="https://cdn.pixabay.com/photo/2017/06/24/20/27/heart-2438746_1280.png" alt="Heart">
     </div>
-    <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1226958/t/5"></script>
+ 
   </body>
   </html>
   `);
