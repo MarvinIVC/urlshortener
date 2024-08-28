@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+</head>
+<body>
+  <div class="container">
+    <h1>Marvin's URL Shortening Service</h1>
+    <form action="/" method="post">
+      <label for="longLink">Long Link:</label>
+      <input type="text" id="longLink" name="longLink" required>
+      <label for="customBackHalf">Custom Back Half (optional):</label>
+      <input type="text" id="customBackHalf" name="customBackHalf">
+      <label for="qr">Generate QR Code:</label>
+      <input type="checkbox" id="qr" name="qr">
+      <input type="submit" value="Create Short Link">
+    </form>
+  </div>
+</body>
+</html>
