@@ -320,7 +320,7 @@ app.post('/', async (req, res) => {
           text-align: center;
         }
         h1 {
-          color: #4dff4d;
+          color: #030000;
           font-size: 2.5em;
           margin-bottom: 20px;
           text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
