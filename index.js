@@ -71,7 +71,7 @@ app.get('/', (req, res) => {
     <style>
       body {
         font-family: 'Work Sans', sans-serif;
-        background-color: #f4f4f4;
+        background-color: #f0f0f0;
         color: #333;
         margin: 0;
         padding: 0;
@@ -80,80 +80,93 @@ app.get('/', (req, res) => {
         align-items: center;
         min-height: 100vh;
       }
+      .container {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+        box-sizing: border-box;
+        text-align: center;
+      }
       h1 {
-        color: #ffbf00;
-        text-shadow: 1px 1px 2px #cd9900;
+        color: #ff6f61;
+        margin-bottom: 20px;
+        font-size: 24px;
+        text-shadow: 1px 1px 2px rgba(255, 105, 97, 0.7);
       }
       form {
-        background: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 300px;
-        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
       label {
         font-weight: bold;
-        display: block;
-        margin: 10px 0 5px;
+        margin-bottom: 5px;
+        color: #555;
+        font-size: 16px;
+        text-align: left;
+        width: 100%;
       }
       input {
         margin: 5px 0 15px;
         padding: 10px;
-        border: 2px solid #ffbf00;
+        border: 2px solid #ff6f61;
         border-radius: 5px;
-        width: calc(100% - 22px);
+        width: 100%;
         box-sizing: border-box;
         font-size: 16px;
         transition: border-color 0.3s ease;
       }
       input:focus {
-        border-color: #cd9900;
+        border-color: #ff3d2e;
         outline: none;
       }
-      input:hover {
-        border-color: #333;
-      }
       button, input[type="submit"] {
-        background-color: #ffbf00;
+        background-color: #ff6f61;
         border: none;
         border-radius: 5px;
-        padding: 10px;
+        padding: 10px 20px;
         color: #fff;
         font-size: 16px;
         cursor: pointer;
         transition: background-color 0.3s ease;
+        margin-top: 10px;
       }
       button:hover, input[type="submit"]:hover {
-        background-color: #cd9900;
+        background-color: #ff3d2e;
       }
       a {
-        color: #cd9900;
+        color: #ff6f61;
         text-decoration: none;
         font-weight: bold;
+        margin-top: 10px;
+        display: inline-block;
       }
       a:hover {
         text-decoration: underline;
       }
-      .error, .success {
+      .response-container {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        margin: 20px auto;
+        text-align: center;
+      }
+      .error {
         color: #ff4d4d;
       }
       .success {
         color: #4dff4d;
       }
-      .response-container {
-        background: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 300px;
-        box-sizing: border-box;
-      }
     </style>
   </head>
   <body>
-    <div class="form-container">
-      <h1>Shorten Your Links With AmberURL</h1>
+    <div class="container">
+      <h1>Marvin's URL Shortening Service</h1>
       <form action="/" method="post">
         <label for="longLink">Long Link:</label>
         <input type="text" id="longLink" name="longLink" required>
@@ -187,7 +200,7 @@ app.post('/', async (req, res) => {
         <style>
           body {
             font-family: 'Work Sans', sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f0f0f0;
             color: #333;
             margin: 0;
             padding: 0;
@@ -196,22 +209,24 @@ app.post('/', async (req, res) => {
             align-items: center;
             min-height: 100vh;
           }
-          h1 {
-            color: #ffbf00;
-            text-shadow: 1px 1px 2px #cd9900;
-          }
           .response-container {
-            background: #fff;
+            background: #ffffff;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            box-sizing: border-box;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 20px auto;
+            text-align: center;
+          }
+          h1 {
+            color: #ff6f61;
           }
           a {
-            color: #cd9900;
+            color: #ff6f61;
             text-decoration: none;
             font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
           }
           a:hover {
             text-decoration: underline;
@@ -234,7 +249,7 @@ app.post('/', async (req, res) => {
         <style>
           body {
             font-family: 'Work Sans', sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f0f0f0;
             color: #333;
             margin: 0;
             padding: 0;
@@ -243,25 +258,24 @@ app.post('/', async (req, res) => {
             align-items: center;
             min-height: 100vh;
           }
-          h1 {
-            color: #ffbf00;
-            text-shadow: 1px 1px 2px #cd9900;
-          }
           .response-container {
-            background: #fff;
+            background: #ffffff;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            box-sizing: border-box;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 20px auto;
+            text-align: center;
           }
           p {
             color: #ff4d4d;
           }
           a {
-            color: #cd9900;
+            color: #ff6f61;
             text-decoration: none;
             font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
           }
           a:hover {
             text-decoration: underline;
@@ -272,7 +286,7 @@ app.post('/', async (req, res) => {
         <div class="response-container">
           <h1 class="error">An error occurred</h1>
           <p>ERROR: ${data.error}</p>
-          <p>Please screenshot this page and send it to the devs to resolve the issue</p>
+          <p>Please screenshot this page and send it to the devs to resolve the issue.</p>
           <a href="/"> <-- Back to home</a>
         </div>
       </body>
@@ -281,8 +295,7 @@ app.post('/', async (req, res) => {
     }
   } else {
     if (qr) {
-      qr = await genqr(data.url);
-      qr = "<p><strong>QR code:</strong> <img src='" + qr + "' alt='QR code'></p>";
+      qr = `<p>QR code: <img src='${await genqr(data.url)}' alt='QR code'></p>`;
     } else {
       qr = '';
     }
@@ -293,7 +306,7 @@ app.post('/', async (req, res) => {
       <style>
         body {
           font-family: 'Work Sans', sans-serif;
-          background-color: #f4f4f4;
+          background-color: #f0f0f0;
           color: #333;
           margin: 0;
           padding: 0;
@@ -302,22 +315,24 @@ app.post('/', async (req, res) => {
           align-items: center;
           min-height: 100vh;
         }
-        h1 {
-          color: #ffbf00;
-          text-shadow: 1px 1px 2px #cd9900;
-        }
         .response-container {
-          background: #fff;
+          background: #ffffff;
           padding: 20px;
-          border-radius: 8px;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          width: 300px;
-          box-sizing: border-box;
+          border-radius: 10px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          max-width: 500px;
+          margin: 20px auto;
+          text-align: center;
+        }
+        h1 {
+          color: #4dff4d;
         }
         a {
-          color: #cd9900;
+          color: #ff6f61;
           text-decoration: none;
           font-weight: bold;
+          display: inline-block;
+          margin-top: 10px;
         }
         a:hover {
           text-decoration: underline;
